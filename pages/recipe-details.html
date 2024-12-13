@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recipe Details - Feast Vision</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f5f5f5;
+    }
+    .recipe-header {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .ingredients-list, .steps-list {
+      margin: 20px auto;
+      max-width: 600px;
+    }
+    .cooking-mode {
+      display: none;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="teal">
+  <div class="nav-wrapper container">
+    <a href="#" class="brand-logo">Feast Vision</a>
+    <ul class="right hide-on-med-and-down">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="recipes.html">Recipes</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Recipe Header -->
+<div class="recipe-header">
+  <h2 id="recipe-title">Spaghetti Bolognese</h2>
+  <p id="recipe-description">A classic Italian dish that's simple and satisfying.</p>
+  <div class="input-field">
+    <input type="number" id="portion-input" min="1" value="4" style="width: 100px; text-align: center;">
+    <label for="portion-input">Servings</label>
+  </div>
+</div>
+
+<!-- Ingredients -->
+<h5 class="center-align">Ingredients</h5>
+<ul class="collection ingredients-list" id="ingredients-list">
+  <!-- Ingredients dynamically rendered -->
+</ul>
+
+<!-- Steps -->
+<h5 class="center-align">Steps</h5>
+<ol class="steps-list" id="steps-list">
+  <!-- Steps dynamically rendered -->
+</ol>
+
+<!-- Cooking Mode Button -->
+<div class="center-align">
+  <button class="btn teal" id="toggle-cooking-mode">Cooking Mode</button>
+</div>
+
+<!-- Cooking Mode Section -->
+<div class="cooking-mode" id="cooking-mode">
+  <h5>Step-by-Step Instructions</h5>
+  <div id="current-step" class="card teal lighten-5" style="padding: 20px; margin: 20px auto; max-width: 500px;">
+    <!-- Current step dynamically displayed -->
+  </div>
+  <button class="btn teal" id="prev-step">Previous</button>
+  <button class="btn teal" id="next-step">Next</button>
+</div>
+
+<!-- Materialize JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Recipe data
+    const recipe = {
+      title: 'Spaghetti Bolognese',
+      description: 'A classic Italian dish that\'s simple and satisfying.',
+      ingredients: [
+        { name: 'Spaghetti', quantity: 400, unit: 'g' },
+        { name: 'Ground beef', quantity: 500, unit: 'g' },
+        { name: 'Tomato sauce', quantity: 1, unit: 'cup' },
+        { name: 'Onion', quantity: 1, unit: '' },
+        { name: 'Garlic', quantity: 2, unit: 'cloves' },
+        { name: 'Olive oil', quantity: 2, unit: 'tbsp' },
+        { name: 'Salt', quantity: 1, unit: 'tsp' },
+        { name: 'Pepper', quantity: 0.5, unit: 'tsp' }
+      ],
+      steps: [
+        'Boil the spaghetti according to package instructions.',
+        'Heat olive oil in a pan and sauté diced onion and garlic until translucent.',
+        'Add ground beef to the pan and cook until browned.',
+        'Pour in the tomato sauce and simmer for 15 minutes.',
+        'Season with salt and pepper to taste.',
+        'Serve the sauce over spaghetti and enjoy!'
+      ]
+    };
+
+    // Elements
+    const recipeTitle = document.getElementById('recipe-title');
+    const recipeDescription = document.getElementById('recipe-description');
+    const ingredientsList = document.getElementById('ingredients-list');
+    const stepsList = document.getElementById('steps-list');
+    const portionInput = document.getElementById('portion-input');
+    const cookingMode = document.getElementById('cooking-mode');
+    const toggleCookingMode = document.getElementById('toggle-cooking-mode');
+    const currentStepCard = document.getElementById('current-step');
+    const prevStepButton = document.getElementById('prev-step');
+    const nextStepButton = document.getElementById('next-step');
+
+    // Populate recipe details
+    recipeTitle.textContent = recipe.title;
+    recipeDescription.textContent = recipe.description;
+
+    function renderIngredients(servings) {
+      ingredientsList.innerHTML = '';
+      recipe.ingredients.forEach(ingredient => {
+        const quantity = (ingredient.quantity / 4) * servings;
+        const ingredientHTML = `
+                        <li class="collection-item">
+                            ${quantity.toFixed(2)} ${ingredient.unit} ${ingredient.name}
+                        </li>
+                    `;
+        ingredientsList.insertAdjacentHTML('beforeend', ingredientHTML);
+      });
+    }
+
+    function renderSteps() {
+      stepsList.innerHTML = '';
+      recipe.steps.forEach((step, index) => {
+        const stepHTML = `<li>${step}</li>`;
+        stepsList.insertAdjacentHTML('beforeend', stepHTML);
+      });
+    }
+
+    // Handle portion adjustment
+    portionInput.addEventListener('input', () => {
+      const servings = parseInt(portionInput.value, 10);
+      if (!isNaN(servings) && servings > 0) {
+        renderIngredients(servings);
+      }
+    });
+
+    // Cooking Mode Logic
+    let currentStepIndex = 0;
+
+    function updateCookingStep() {
+      currentStepCard.textContent = recipe.steps[currentStepIndex];
+      prevStepButton.disabled = currentStepIndex === 0;
+      nextStepButton.disabled = currentStepIndex === recipe.steps.length - 1;
+    }
+
+    toggleCookingMode.addEventListener('click', () => {
+      cookingMode.style.display = cookingMode.style.display === 'block' ? 'none' : 'block';
+      currentStepIndex = 0;
+      updateCookingStep();
+    });
+
+    prevStepButton.addEventListener('click', () => {
+      if (currentStepIndex > 0) {
+        currentStepIndex--;
+        updateCookingStep();
+      }
+    });
+
+    nextStepButton.addEventListener('click', () => {
+      if (currentStepIndex < recipe.steps.length - 1) {
+        currentStepIndex++;
+        updateCookingStep();
+      }
+    });
+
+    // Initial render
+    renderIngredients(4);
+    renderSteps();
+  });
+</script>
+</body>
+</html>

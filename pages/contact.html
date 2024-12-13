@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feast Vision</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+<body>
+
+<header class="valign-wrapper">
+    <div class="logo left">Feast Vision</div>
+    <div class="menu right">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="recipes.html">Recipes</a>
+        <a href="contact.html">Contact us</a>
+    </div>
+
+</header>
+
+<main class="container">
+    <div class="form-container center">
+        <form class="contact-form">
+            <h2 class="center-align">Contact Us</h2>
+
+            <div class="input-field">
+                <label for="name">Name</label>
+                <input type="text" id="name" class="validate" placeholder="Enter your name" required>
+            </div>
+
+            <div class="input-field">
+                <label for="email">Email</label>
+                <input type="email" id="email" class="validate" placeholder="Enter your email" required>
+            </div>
+
+            <div class="input-field">
+                <select id="subject" required>
+                    <option value="" disabled selected>Choose a subject</option>
+                    <option value="feedback">Feedback</option>
+                    <option value="support">Support</option>
+                    <option value="general">General Inquiry</option>
+                </select>
+                <label for="subject">Subject</label>
+            </div>
+
+            <div class="input-field">
+                <label for="message">Message</label>
+                <textarea id="message" class="materialize-textarea" placeholder="Write your message here" required></textarea>
+            </div>
+
+            <button type="submit" class="btn waves-effect waves-light btn-submit" id="submit-btn" style="background-color: #243424;">Submit</button>
+        </form>
+    </div>
+</main>
+<footer class="page-footer" style="background-color: #243424; bottom: 0;">
+    <p class="center">Feast Vision 2024 &copy All rights reserved</p>
+</footer>
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="../js/index.js"></script>
+
+</body>
+</html>
