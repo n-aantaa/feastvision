@@ -30,11 +30,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const ingredientsList = document.getElementById('ingredients-list');
     const stepsList = document.getElementById('steps-list');
     const portionInput = document.getElementById('portion-input');
-    const cookingMode = document.getElementById('cooking-mode');
-    const toggleCookingMode = document.getElementById('toggle-cooking-mode');
-    const currentStepCard = document.getElementById('current-step');
-    const prevStepButton = document.getElementById('prev-step');
-    const nextStepButton = document.getElementById('next-step');
 
     recipeTitle.textContent = recipe.title;
     recipeDescription.textContent = recipe.description;
@@ -67,33 +62,8 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    let currentStepIndex = 0;
 
-    function updateCookingStep() {
-        currentStepCard.textContent = recipe.steps[currentStepIndex];
-        prevStepButton.disabled = currentStepIndex === 0;
-        nextStepButton.disabled = currentStepIndex === recipe.steps.length - 1;
-    }
 
-    toggleCookingMode.addEventListener('click', () => {
-        cookingMode.style.display = cookingMode.style.display === 'block' ? 'none' : 'block';
-        currentStepIndex = 0;
-        updateCookingStep();
-    });
-
-    prevStepButton.addEventListener('click', () => {
-        if (currentStepIndex > 0) {
-            currentStepIndex--;
-            updateCookingStep();
-        }
-    });
-
-    nextStepButton.addEventListener('click', () => {
-        if (currentStepIndex < recipe.steps.length - 1) {
-            currentStepIndex++;
-            updateCookingStep();
-        }
-    });
 
     renderIngredients(4);
     renderSteps();
