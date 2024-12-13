@@ -3,7 +3,7 @@ const recipes = [
         name: "Butter Chicken",
         image: "../images/butter-chicken.jpg",
         description: "A rich and creamy Indian dish with tender chicken in a tomato-based sauce.",
-        url: "recipe-details-butter-chicken.html",
+        url: "recipe-details.html",
         cuisine: "asian",
         diet: "gluten-free"
     },
@@ -11,7 +11,7 @@ const recipes = [
         name: "Thieboudieune",
         image: "../images/thieboudieune.jpeg",
         description: "A flavorful Senegalese rice and fish dish cooked with vegetables and spices.",
-        url: "recipe-details-thieboudieune.html",
+        url: "recipe-details.html",
         cuisine: "african",
         diet: "all"
     },
@@ -19,7 +19,7 @@ const recipes = [
         name: "Yassa",
         image: "../images/yassa.jpeg",
         description: "A tangy and savory Senegalese dish made with caramelized onions and marinated chicken.",
-        url: "recipe-details-yassa.html",
+        url: "recipe-details.html",
         cuisine: "african",
         diet: "all"
     },
@@ -27,7 +27,7 @@ const recipes = [
         name: "Quiche Lorraine",
         image: "../images/quiche.webp",
         description: "A classic French savory tart filled with eggs, cream, and smoky bacon or vegetables.",
-        url: "recipe-details-quiche.html",
+        url: "recipe-details.html",
         cuisine: "european",
         diet: "gluten-free"
     },
@@ -35,7 +35,7 @@ const recipes = [
         name: "Tarte Tatin",
         image: "../images/tatin.jpg",
         description: "A French upside-down caramelized apple tart, perfect for dessert lovers.",
-        url: "recipe-details-tarte-tatin.html",
+        url: "recipe-details.html",
         cuisine: "european",
         diet: "all"
     },
@@ -43,7 +43,7 @@ const recipes = [
         name: "Piña Colada",
         image: "../images/pina-colada.jpg",
         description: "A tropical drink made with coconut cream, pineapple juice, and rum.",
-        url: "recipe-details-pina-colada.html",
+        url: "recipe-details.html",
         cuisine: "latin",
         diet: "gluten-free"
     },
@@ -51,7 +51,7 @@ const recipes = [
         name: "Matcha Latte",
         image: "../images/matcha.jpg",
         description: "A creamy Japanese green tea latte made with ceremonial-grade matcha.",
-        url: "recipe-details-matcha-latte.html",
+        url: "recipe-details.html",
         cuisine: "asian",
         diet: "vegan"
     },
@@ -59,7 +59,7 @@ const recipes = [
         name: "Tiramisu",
         image: "../images/tiramisu.jpg",
         description: "An Italian dessert made with coffee-soaked ladyfingers and mascarpone cheese.",
-        url: "recipe-details-tiramisu.html",
+        url: "recipe-details.html",
         cuisine: "european",
         diet: "gluten-free"
     }
@@ -76,7 +76,7 @@ function renderRecipes(filteredRecipes) {
 
     filteredRecipes.forEach(recipe => {
         const cardHTML = `
-                <div class="col s12 m4 l4">
+                <div class="col s12 l3">
                     <div class="card">
                         <div class="card-image">
                             <img src="${recipe.image}" alt="${recipe.name}">

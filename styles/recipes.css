@@ -29,34 +29,17 @@ header a {
 .menu{
     justify-self: center;
 }
-.hero {
-    background-image: url('../images/indian.jpg');
-    background-size: cover;
-    background-position: center;
-    height: 30rem;
-    color: #b5e6df;
-    /*padding: 100px 20px;*/
-}
-.hero-text{
-    width: 100%;
-}
-.hero-text h1 {
-    font-size: 5rem;
-    margin: 0;
-    background-color: rgba(0,0,0,0.4);
+.card{
+    height: 40%;
 }
 
-.breakfast-section {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 50px 20px;
-    background-color: #ccc;
-}
 
 
 .filter-section {
-    width: 30%;
+    display: flex;
+}
+.filter-section div{
+    margin: auto 1rem;
 }
 
 footer {
